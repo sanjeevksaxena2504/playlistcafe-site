@@ -50,7 +50,7 @@
         display: block;
     }
 
-    /* dots */
+    /* Dots */
     .dots {
         position: absolute;
         bottom: 10px;
@@ -66,6 +66,7 @@
         background: rgba(255,255,255,0.4);
         border-radius: 50%;
         transition: 0.3s;
+        cursor: pointer;
     }
 
     .dot.active {
@@ -101,7 +102,11 @@
         <img src="hero2.jpg" alt="Hero 2">
     </div>
 
-    <!-- Dots (auto-handled by JS count) -->
+    <div class="slide">
+        <img src="hero3.jpg" alt="Hero 3">
+    </div>
+
+    <!-- Dots -->
     <div class="dots" id="dots"></div>
 
 </div>
@@ -135,7 +140,7 @@
         dots[i].classList.add('active');
     }
 
-    // Auto-slide
+    // Auto slide
     setInterval(() => {
         index = (index + 1) % slides.length;
         showSlide(index);
