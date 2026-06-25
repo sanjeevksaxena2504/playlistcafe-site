@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalogue of Classic Bollywood Vinyl</title>
+<style>
+  :root{
+    --paper:#F7F6F2; --ink:#181A1F; --muted:#6B6E76; --line:#E2E0D8; --line-2:#CFCDC4;
+    --accent:#1F3A8A; --ok:#2F7D54;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Hoefler Text",Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  body.noscroll{overflow:hidden}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+  a{color:var(--accent)}
+  .label{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+  .masthead{border-bottom:1px solid var(--ink);position:sticky;top:0;background:var(--paper);z-index:20}
+  .mh-in{display:flex;align-items:baseline;justify-content:space-between;padding:18px 0;gap:20px}
+  .mh-title{font-family:var(--serif);font-size:1.35rem;font-weight:600;letter-spacing:.01em}
+  .mh-meta{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:right}
+
+  .intro{padding:84px 0 56px;border-bottom:1px solid var(--line)}
+  .intro .kicker{display:block;margin-bottom:22px}
+  .intro h1{font-family:var(--serif);font-weight:600;font-size:clamp(2.3rem,5.4vw,4rem);line-height:1.04;letter-spacing:-.01em;max-width:16ch}
+  .intro p{margin-top:24px;max-width:60ch;color:var(--muted);font-size:1.08rem}
+  .intro .runin{display:flex;gap:40px;margin-top:34px;flex-wrap:wrap}
+  .intro .runin div span{display:block}
+  .intro .runin .v{font-family:var(--serif);font-size:1.4rem;color:var(--ink)}
+  .intro .runin .k{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+
+  .offer{padding:50px 0;border-bottom:1px solid var(--line)}
+  .offer h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2rem);font-weight:600;line-height:1.1;max-width:24ch}
+  .offer p{color:var(--muted);max-width:62ch;margin-top:14px}
+  .offer a{color:var(--accent);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line-2)}
+  .offer .offer-lead{color:var(--ink);font-size:1.1rem;max-width:60ch;margin-top:14px}
+  .offer .points{display:flex;flex-wrap:wrap;gap:10px 28px;margin:20px 0 0;padding:0;list-style:none}
+  .offer .points li{position:relative;padding-left:18px;font-size:.92rem;color:var(--ink)}
+  .offer .points li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;background:var(--accent);border-radius:50%}
+  .offer .offer-foot{color:var(--muted);font-size:.88rem;max-width:62ch;margin-top:20px}
+
+  .catnav{display:flex;flex-wrap:wrap;gap:10px 8px;align-items:center;padding:24px 0;border-bottom:1px solid var(--line)}
+  .catnav .nav-label{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-right:8px}
+  .catnav a{font-family:var(--serif);font-size:1rem;color:var(--ink);text-decoration:none;padding:7px 13px;border:1px solid var(--line-2);border-radius:2px;transition:.15s;display:inline-flex;align-items:baseline;gap:8px}
+  .catnav a:hover,.catnav a:focus-visible{border-color:var(--accent);color:var(--accent)}
+  .catnav a .c{font-family:var(--sans);font-size:.66rem;color:var(--muted);font-variant-numeric:tabular-nums}
+  .catnav a:hover .c{color:var(--accent)}
+
+  section.cat{padding:64px 0 0;scroll-margin-top:74px}
+  .cat-title{display:flex;align-items:baseline;gap:16px;margin-bottom:8px}
+  .cat-title h2{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);font-weight:600}
+  .cat-title .span{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .cat-note{color:var(--muted);max-width:58ch;border-top:2px solid var(--accent);padding-top:14px}
+
+  /* compact cover grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;margin-top:26px}
+  .tile{appearance:none;font:inherit;color:inherit;text-align:left;background:#fff;border:1px solid var(--line-2);border-radius:2px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:border-color .15s,transform .15s,box-shadow .15s}
+  .tile:hover,.tile:focus-visible{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 10px 24px rgba(20,20,18,.10);outline:none}
+  .tile-cover{aspect-ratio:1;background:#EEEDE7;display:block;position:relative}
+  .tile-cover img{width:100%;height:100%;object-fit:cover;display:block}
+  .tile-cover img.isph{object-fit:contain;background:var(--paper)}
+  .tile-gf{position:absolute;top:8px;left:8px;font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;background:rgba(31,58,138,.92);color:#fff;padding:3px 7px;border-radius:2px}
+  .tile-body{padding:12px 13px 14px;display:flex;flex-direction:column;flex:1}
+  .tile-meta{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .tile-no{font-family:var(--serif);color:var(--accent);font-weight:600;font-size:.9rem;font-variant-numeric:tabular-nums}
+  .tile-sub{font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .tile-title{font-family:var(--serif);font-size:1.12rem;font-weight:600;line-height:1.14;margin:3px 0 10px}
+  .tile-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-top:1px solid var(--line);padding-top:9px}
+  .tile-grade{font-size:.7rem;color:var(--muted);letter-spacing:.02em}
+  .tile-price{font-family:var(--serif);font-weight:600;font-size:1.05rem;font-variant-numeric:tabular-nums}
+  @media(max-width:520px){.grid{grid-template-columns:repeat(2,1fr);gap:12px}.tile-title{font-size:1rem}}
+
+  /* detail view (inside modal) reuses these */
+  .lot{display:grid;grid-template-columns:1.15fr 1fr;gap:44px}
+  .plates{display:flex;flex-direction:column;gap:12px}
+  .plate{border:1px solid var(--line-2);background:#fff;overflow:hidden}
+  .plate.lead{aspect-ratio:1}
+  .plate img{display:block;width:100%;height:100%;object-fit:cover;cursor:zoom-in;transition:opacity .2s;background:#EEEDE7}
+  .plate img:hover{opacity:.88}
+  .plate img.isph{object-fit:contain;background:var(--paper);cursor:default}
+  .plate .cap{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:7px 10px;border-top:1px solid var(--line);background:var(--paper)}
+  .plate-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .plate-row .plate{aspect-ratio:1}
+  .plate-row .plate.wide{grid-column:1 / -1;aspect-ratio:2 / 1}
+
+  .lot-head{display:flex;align-items:baseline;gap:14px;margin-bottom:4px}
+  .lot-no{font-family:var(--serif);font-size:2.4rem;font-weight:600;color:var(--accent);line-height:1;font-variant-numeric:tabular-nums}
+  .lot h3{font-family:var(--serif);font-size:1.7rem;font-weight:600;line-height:1.1;margin-top:4px}
+  .lot .sub{color:var(--muted);font-size:.92rem;margin:6px 0 0}
+  .blurb{font-family:var(--serif);font-style:italic;color:#43464d;margin:14px 0 18px;font-size:1.04rem;line-height:1.4;max-width:48ch}
+
+  dl.spec{display:grid;grid-template-columns:auto 1fr;gap:0 22px;border-top:1px solid var(--line)}
+  dl.spec dt{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:11px 0;border-bottom:1px solid var(--line);align-self:center}
+  dl.spec dd{padding:11px 0;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+  dl.spec dd .grade{display:inline-flex;align-items:center;gap:7px;font-weight:600}
+  dl.spec dd .dot{width:8px;height:8px;border-radius:50%}
+  .songnote{color:var(--muted);font-size:.82rem;letter-spacing:.03em;padding-top:14px;margin-top:2px}
+  .condnote{color:var(--ink);font-size:.85rem;margin-top:12px;padding:10px 12px;background:#EFEEE8;border-left:2px solid var(--accent)}
+  .lot-buy{margin-top:24px;display:flex;align-items:center;gap:16px}
+  .price{font-family:var(--serif);font-size:1.9rem;font-weight:600;font-variant-numeric:tabular-nums}
+  .price small{display:block;font-family:var(--sans);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+  /* detail modal */
+  .modal{position:fixed;inset:0;z-index:80;background:rgba(24,26,31,.55);display:none;overflow-y:auto}
+  .modal.on{display:block}
+  .modal-wrap{min-height:100%;display:flex;align-items:flex-start;justify-content:center;padding:40px 18px}
+  .modal-card{position:relative;width:100%;max-width:1000px;background:var(--paper);border:1px solid var(--line-2);padding:46px 36px 38px}
+  .modal-close{position:absolute;top:12px;right:12px;font:inherit;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);background:var(--paper);border:1px solid var(--line-2);padding:9px 14px;cursor:pointer}
+  .modal-close:hover{border-color:var(--accent);color:var(--accent)}
+  .modal .lot{border-bottom:0;padding:0}
+  @media(max-width:760px){.modal-card{padding:46px 18px 26px}.lot{grid-template-columns:1fr;gap:26px}}
+
+  .notes{padding:74px 0;border-top:1px solid var(--ink);margin-top:30px}
+  .notes h2{font-family:var(--serif);font-size:1.5rem;font-weight:600;margin-bottom:8px}
+  .notes p{color:var(--muted);max-width:64ch}
+  .grade-key{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px 28px;margin-top:24px}
+  .grade-key div{font-size:.86rem;padding:8px 0;border-top:1px solid var(--line)}
+  .grade-key b{color:var(--accent)}
+  .grade-key span{display:block;color:var(--muted);font-size:.78rem}
+
+  footer{padding:56px 0 80px;border-top:1px solid var(--line)}
+  footer .label{display:block;margin-bottom:8px}
+  footer .ways{margin-top:8px;display:flex;gap:26px;flex-wrap:wrap;font-size:.95rem}
+  footer .fine{margin-top:30px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--line-2)}
+
+  .lb{position:fixed;inset:0;background:rgba(20,20,18,.96);z-index:90;display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:36px}
+  .lb.on{display:flex}
+  .lb img{max-width:92vw;max-height:80vh;object-fit:contain;background:#222}
+  .lb .cap{color:#cfcdc4;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase}
+  .lb .ctl{display:flex;gap:12px}
+  .lb button{font:inherit;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:transparent;border:1px solid #555;padding:10px 18px;cursor:pointer}
+  .lb button:hover{border-color:#fff}
+  .lb .x{position:absolute;top:22px;right:26px}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  @media(max-width:760px){.wrap{padding:0 22px}.mh-meta{display:none}}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tile{transition:none}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap mh-in">
+    <div class="mh-title">The Record Room</div>
+    <div class="mh-meta">Catalogue &middot; <span id="mh-count">--</span> records &middot; Bengaluru</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="intro">
+    <span class="label kicker">Limited collection &middot; offered as one lot</span>
+    <h1>A private Vinyl Collection, Offered as a single lot.</h1>
+    <p>Long-players from the great years of the playback song — the work of S.&nbsp;D. and R.&nbsp;D. Burman, Khayyam, Laxmikant-Pyarelal and their peers. Original pressings alongside a few crisp modern reissues, each photographed front and back and graded honestly.</p>
+    <div class="runin">
+      <div><span class="v" id="stat-count">--</span><span class="k">Records</span></div>
+      <div><span class="v" id="stat-years">--</span><span class="k">Pressing years</span></div>
+      <div><span class="v" id="stat-labels">--</span><span class="k">Labels</span></div>
+    </div>
+  </section>
+
+  <section class="offer">
+    <h2>Golden-era Hindi film music, on vinyl.</h2>
+    <p class="offer-lead">Add a whole collection to your shelves in one move — <span id="lot-count-2">--</span> golden-era Hindi film LPs, gathered over the years and now passing on together rather than piece by piece.</p>
+    <ul class="points">
+      <li>Spanning <span id="cat-count">--</span> of the era's great composers and stars</li>
+      <li>Original pressings, plus a couple of sealed reissues</li>
+      <li>Honestly graded and fairly priced</li>
+    </ul>
+    <p class="offer-foot">The figure beside each title is shown for reference only; for the lot price, DM <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram @yourhandle</a> or <a href="https://reddit.com/user/yourhandle" target="_blank" rel="noopener">Reddit u/yourhandle</a>. Ships in rigid LP mailers; international post on request.</p>
+  </section>
+
+  <nav class="catnav" id="catnav"></nav>
+
+  <main id="catalogue"></main>
+
+  <section class="notes">
+    <span class="label">Condition</span>
+    <h2>How the records are graded</h2>
+    <p>Sleeve and disc are graded separately on the standard Goldmine scale; where a record sits between two grades it is given the lower one. The photographs are the final description — open a record, then click any photo to inspect it at full resolution.</p>
+    <div class="grade-key">
+      <div><b>New</b><span>Sealed modern reissue.</span></div>
+      <div><b>M / NM</b><span>Mint to Near Mint — as new.</span></div>
+      <div><b>VG+</b><span>Light handling, plays clean.</span></div>
+      <div><b>VG</b><span>Honest wear, light surface noise.</span></div>
+      <div><b>G / G+</b><span>Well played; a spinner, not a shelf piece.</span></div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span class="label">Get in touch</span>
+    <div class="ways">
+      <a href="mailto:you@example.com?subject=Vinyl%20lot%20enquiry">you@example.com</a>
+      <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram &middot; @yourhandle</a>
+      <a href="https://reddit.com/user/yourhandle" target="_blank" rel="noopener">Reddit &middot; u/yourhandle</a>
+    </div>
+    <div class="fine">The Record Room &middot; Bengaluru, India &middot; Prices in INR, shipping extra</div>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Record details">
+  <div class="modal-wrap">
+    <div class="modal-card">
+      <button class="modal-close" id="modalX" aria-label="Close">Close X</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photograph">
+  <button class="x" id="lbX" aria-label="Close">Close X</button>
+  <img id="lbImg" alt="">
+  <div class="cap" id="lbCap"></div>
+  <div class="ctl"><button id="lbPrev">Prev</button><button id="lbNext">Next</button></div>
+</div>
+
+<script>
+const DATA = [
+ {
+  "id": "s-d-burman",
+  "title": "S. D. Burman",
+  "note": "Folk in his blood, the city in his ear — the melodist behind cinema's smoothest heartbreak.",
+  "records": [
+   {
+    "slug": "guide",
+    "title": "Guide",
+    "year": "1968",
+    "label": "ODEON",
+    "catalog": "3AEX-5074",
+    "coverGrade": "G",
+    "recordGrade": "VG",
+    "gatefold": false,
+    "price": 3800,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "S. D. Burman's crowning score: Waheeda's dance, Dev Anand's longing, and 'Aaj Phir Jeene Ki' forever.",
+    "notes": ""
+   },
+   {
+    "slug": "jewel",
+    "title": "Jewel Thief",
+    "year": "1967",
+    "label": "ODEON",
+    "catalog": "3AEX-5146",
+    "coverGrade": "G",
+    "recordGrade": "VG",
+    "gatefold": false,
+    "price": 3800,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "Sixties Bombay at its most stylish; 'Hothon Mein Aisi Baat' and velvet intrigue in every groove.",
+    "notes": ""
+   },
+   {
+    "slug": "aradhana",
+    "title": "Aradhana",
+    "year": "1969",
+    "label": "ODEON",
+    "catalog": "3AEX-5248",
+    "coverGrade": "G",
+    "recordGrade": "VG",
+    "gatefold": false,
+    "price": 3800,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "The album that crowned Kishore Kumar: 'Roop Tera Mastana' and a heartthrob the nation never got over.",
+    "notes": ""
+   },
+   {
+    "slug": "gambler",
+    "title": "Gambler",
+    "year": "1971",
+    "label": "POLYDOR",
+    "catalog": "2392 008",
+    "coverGrade": "G",
+    "recordGrade": "G+",
+    "gatefold": false,
+    "price": 3400,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "S. D. Burman and Kishore in a moonlit mood — 'Dil Aaj Shayar Hai,' Dev Anand's poetry of the night.",
+    "notes": ""
+   }
+  ]
+ },
+ {
+  "id": "r-d-burman",
+  "title": "R. D. Burman",
+  "note": "Pancham — rhythm, breath and brass; the most sampled man in Hindi music.",
+  "records": [
+   {
+    "slug": "hum",
+    "title": "Hum Kisise Kum Naheen",
+    "year": "1977",
+    "label": "HMV",
+    "catalog": "PEALP 2005",
+    "coverGrade": "G",
+    "recordGrade": "VG+",
+    "gatefold": true,
+    "price": 3600,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "Pancham in full flight: 'Bachna Ae Haseeno' for the floor, the National-Award-winning 'Kya Hua Tera Wada' for the heart.",
+    "notes": ""
+   },
+   {
+    "slug": "satte",
+    "title": "Satte Pe Satta",
+    "year": "1981",
+    "label": "MUSIC INDIA",
+    "catalog": "2392 322",
+    "coverGrade": "G",
+    "recordGrade": "VG+",
+    "gatefold": true,
+    "price": 4000,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "Amitabh, seven rowdy brothers, and 'Pyar Humein Kis Mod Pe' — RD at his most joyous.",
+    "notes": ""
+   },
+   {
+    "slug": "sanam",
+    "title": "Sanam Teri Kasam",
+    "year": "1981",
+    "label": "MUSIC INDIA",
+    "catalog": "2392 316",
+    "coverGrade": "G",
+    "recordGrade": "VG+",
+    "gatefold": true,
+    "price": 4000,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "'Kitne Bhi Tu Karle Sitam': Kishore's ache over Pancham's strings, pure early-Eighties heartbreak.",
+    "notes": ""
+   }
+  ]
+ },
+ {
+  "id": "kalyanji-anandji",
+  "title": "Kalyanji-Anandji",
+  "note": "Velvet melodies and midnight moods — unmistakably the Kalyanji-Anandji sound.",
+  "records": [
+   {
+    "slug": "black",
+    "title": "Blackmail",
+    "year": "1973",
+    "label": "POLYDOR",
+    "catalog": "2392 043",
+    "coverGrade": "G",
+    "recordGrade": "G+",
+    "gatefold": false,
+    "price": 3000,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "Two words you already know — 'Pal Pal Dil Ke Paas.' Kishore at his most tender.",
+    "notes": ""
+   }
+  ]
+ },
+ {
+  "id": "laxmikant-pyarelal",
+  "title": "Laxmikant-Pyarelal",
+  "note": "Full-throttle melody — the most prolific hit-machine Bombay ever ran.",
+  "records": [
+   {
+    "slug": "karz",
+    "title": "Karz",
+    "year": "1980",
+    "label": "HMV",
+    "catalog": "PEASD 2034",
+    "coverGrade": "G",
+    "recordGrade": "VG+",
+    "gatefold": false,
+    "price": 4000,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "'Om Shanti Om,' the disco-rock thunderbolt Subhash Ghai and Rishi Kapoor made immortal.",
+    "notes": ""
+   },
+   {
+    "slug": "ram",
+    "title": "Ram Lakhan",
+    "year": "1988",
+    "label": "HMV",
+    "catalog": "PSLP 1347",
+    "coverGrade": "G",
+    "recordGrade": "VG+",
+    "gatefold": false,
+    "price": 4500,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "'My Name Is Lakhan': the last great Laxmikant-Pyarelal blockbuster, swagger from the first needle drop.",
+    "notes": ""
+   }
+  ]
+ },
+ {
+  "id": "khayyam",
+  "title": "Khayyam",
+  "note": "Fewer notes, deeper silence — restraint turned into longing.",
+  "records": [
+   {
+    "slug": "umrao",
+    "title": "Umrao Jaan",
+    "year": "1981",
+    "label": "HMV",
+    "catalog": "ECLP-5724",
+    "coverGrade": "G",
+    "recordGrade": "VG+",
+    "gatefold": false,
+    "price": 3800,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "Asha Bhosle like never before; 'Dil Cheez Kya Hai' and the ghazals that won her the National Award.",
+    "notes": ""
+   },
+   {
+    "slug": "bazaar",
+    "title": "Bazaar",
+    "year": "1981",
+    "label": "HMV",
+    "catalog": "ECLP-5770",
+    "coverGrade": "G",
+    "recordGrade": "VG+",
+    "gatefold": false,
+    "price": 4800,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "Khayyam's ghazal jewel — 'Karoge Yaad To' and 'Phir Chhidi Raat,' poetry sung by candlelight.",
+    "notes": ""
+   }
+  ]
+ },
+ {
+  "id": "bappi-lahiri",
+  "title": "Bappi Lahiri",
+  "note": "Gold chains and four-to-the-floor — the man who taught Bollywood to dance.",
+  "records": [
+   {
+    "slug": "disco",
+    "title": "Disco Dancer",
+    "year": "2022",
+    "label": "Saregama",
+    "catalog": "Manufactured in Neatherlands",
+    "coverGrade": "New",
+    "recordGrade": "New",
+    "gatefold": false,
+    "price": 3500,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "'I Am a Disco Dancer': Mithun, gold, and a beat that travelled from Bombay to Moscow.",
+    "notes": ""
+   }
+  ]
+ },
+ {
+  "id": "feroz-khan-hits",
+  "title": "Feroz Khan Hits",
+  "note": "Feroz Khan — desert dust and disco glamour, scored to match the swagger.",
+  "records": [
+   {
+    "slug": "dharmatma",
+    "title": "Dharmatma",
+    "year": "1975",
+    "label": "HMV",
+    "catalog": "EALP 4062",
+    "coverGrade": "Remade",
+    "recordGrade": "VG",
+    "gatefold": false,
+    "price": 4500,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "Feroz Khan's wide-screen cool, shot in Afghanistan, and the dreamy 'Kya Khoob Lagti Ho.'",
+    "notes": ""
+   },
+   {
+    "slug": "janbaaz",
+    "title": "Janbaaz",
+    "year": "2023",
+    "label": "Universal Music India",
+    "catalog": "",
+    "coverGrade": "New",
+    "recordGrade": "New",
+    "gatefold": false,
+    "price": 4999,
+    "sold": false,
+    "songs": "Refer to record pics for details",
+    "blurb": "Feroz Khan style at its peak; 'Har Kisi Ko Nahin Milta,' romance with a leather-jacket edge.",
+    "notes": ""
+   }
+  ]
+ }
+];
+
+const fmt = n => "\u20B9" + Number(n).toLocaleString("en-IN");
+const gColor = g => { const m=(g||"").toUpperCase(); return (m==="M"||m==="NM"||m==="NEW")?"var(--ok)":"var(--accent)"; };
+const esc = s => (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+
+function PH(cap){
+  const s = "<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800'>"
+    + "<rect width='100%' height='100%' fill='#F1F0EA'/>"
+    + "<rect x='18' y='18' width='764' height='764' fill='none' stroke='#CFCDC4' stroke-dasharray='10 8'/>"
+    + "<circle cx='400' cy='330' r='110' fill='none' stroke='#1F3A8A' stroke-opacity='.32' stroke-width='3'/>"
+    + "<circle cx='400' cy='330' r='14' fill='#1F3A8A' fill-opacity='.32'/>"
+    + "<text x='400' y='520' fill='#6B6E76' font-family='sans-serif' font-size='30' text-anchor='middle' letter-spacing='2'>" + cap + "</text>"
+    + "<text x='400' y='560' fill='#A6A290' font-family='sans-serif' font-size='18' text-anchor='middle' letter-spacing='3'>ADD PHOTO</text></svg>";
+  return "data:image/svg+xml;utf8," + encodeURIComponent(s);
+}
+const onerr = "this.onerror=null;this.classList.add('isph');this.src=PH(this.dataset.ph)";
+
+function buildImages(slug, gatefold){
+  const D="img/display/", F="img/full/";
+  const mk=(role,cap,wide)=>({src:D+slug+"-"+role+".jpg", hi:F+slug+"-"+role+".jpg", cap, wide:!!wide});
+  const a=[mk("front","Front cover")];
+  if(gatefold) a.push(mk("inside","Gatefold - inside",true));
+  a.push(mk("reverse","Reverse"), mk("a","Disc - A"), mk("b","Disc - B"));
+  return a;
+}
+function plateImg(im, title, lead){
+  return "<figure class='plate"+(lead?" lead":"")+(im.wide?" wide":"")+"'>"
+    + "<img loading='lazy' decoding='async' src='"+im.src+"' data-hi='"+im.hi+"' data-ph='"+esc(im.cap)+"'"
+    + " data-cap='"+esc(title+" - "+im.cap)+"' alt='"+esc(title+" - "+im.cap)+"' onerror=\""+onerr+"\">"
+    + "<figcaption class='cap'>"+esc(im.cap)+"</figcaption></figure>";
+}
+
+function tileHTML(r, no, i){
+  const lead = buildImages(r.slug, r.gatefold)[0];
+  const sub = [r.year, r.label].filter(Boolean).map(esc).join(" \u00B7 ");
+  const grade = (esc(r.coverGrade)||"-") + " / " + (esc(r.recordGrade)||"-");
+  return "<button class='tile' data-i='"+i+"' aria-label='"+esc(r.title)+" - view details'>"
+    + "<span class='tile-cover'>"
+    +   (r.gatefold ? "<span class='tile-gf'>Gatefold</span>" : "")
+    +   "<img loading='lazy' decoding='async' src='"+lead.src+"' data-ph='Front cover' alt='"+esc(r.title)+" front cover' onerror=\""+onerr+"\">"
+    + "</span>"
+    + "<span class='tile-body'>"
+    +   "<span class='tile-meta'><span class='tile-no'>"+no+"</span><span class='tile-sub'>"+sub+"</span></span>"
+    +   "<span class='tile-title'>"+esc(r.title)+"</span>"
+    +   "<span class='tile-foot'><span class='tile-grade' title='Sleeve / Disc grade'>"+grade+"</span><span class='tile-price'>"+(r.sold?"Sold":(r.price!=null?fmt(r.price):"--"))+"</span></span>"
+    + "</span></button>";
+}
+
+function detailHTML(r, no){
+  const imgs = buildImages(r.slug, r.gatefold);
+  const lead = imgs[0], rest = imgs.slice(1);
+  const subBits = [r.year, r.label, r.catalog ? "Cat. "+r.catalog : ""].filter(Boolean).map(esc).join(" \u00B7 ");
+  const parts = (r.songs||"").split(";").map(s=>s.trim()).filter(Boolean);
+  const tracks = parts.length>1
+    ? "<div class='tracks'><span class='label'>Selected tracks</span><ul>"+parts.map(s=>"<li>"+esc(s)+"</li>").join("")+"</ul></div>"
+    : (parts.length===1 ? "<p class='songnote'>"+esc(parts[0])+"</p>" : "");
+  return "<div class='lot'>"
+    + "<div class='plates'>"+plateImg(lead, r.title, true)
+    +   "<div class='plate-row'>"+rest.map(im=>plateImg(im, r.title, false)).join("")+"</div></div>"
+    + "<div class='detail'>"
+    +   "<div class='lot-head'><span class='lot-no'>"+no+"</span><div><h3>"+esc(r.title)+"</h3></div></div>"
+    +   "<div class='sub'>"+subBits+"</div>"
+    +   (r.blurb ? "<p class='blurb'>"+esc(r.blurb)+"</p>" : "")
+    +   "<dl class='spec'>"
+    +     "<dt>Sleeve</dt><dd><span class='grade'><span class='dot' style='background:"+gColor(r.coverGrade)+"'></span>"+(esc(r.coverGrade)||"--")+"</span></dd>"
+    +     "<dt>Record</dt><dd><span class='grade'><span class='dot' style='background:"+gColor(r.recordGrade)+"'></span>"+(esc(r.recordGrade)||"--")+"</span></dd>"
+    +     "<dt>Label</dt><dd>"+(esc(r.label)||"--")+"</dd>"
+    +     "<dt>Year</dt><dd>"+(esc(r.year)||"--")+"</dd>"
+    +   "</dl>"
+    +   (r.notes ? "<p class='condnote'>"+esc(r.notes)+"</p>" : "")
+    +   tracks
+    +   "<div class='lot-buy'><div class='price'>"+(r.sold?"Sold":(r.price!=null?fmt(r.price):"--"))+"<small>"+(r.sold?"no longer available":"reference price")+"</small></div></div>"
+    + "</div></div>";
+}
+
+const cat = document.getElementById("catalogue");
+const nav = document.getElementById("catnav");
+nav.innerHTML = "<span class='nav-label'>Jump to</span>";
+let lotNo = 0;
+const FLAT = [];
+
+DATA.forEach(group=>{
+  const sec = document.createElement("section");
+  sec.className = "cat"; sec.id = group.id;
+  const count = group.records.length;
+  nav.insertAdjacentHTML("beforeend", "<a href='#"+group.id+"'>"+esc(group.title)+" <span class='c'>"+count+"</span></a>");
+  let tiles = "";
+  group.records.forEach(r=>{
+    lotNo++; const no=String(lotNo).padStart(2,"0"); const i=FLAT.length;
+    FLAT.push({r:r, no:no});
+    tiles += tileHTML(r, no, i);
+  });
+  sec.innerHTML = "<div class='cat-title'><h2>"+esc(group.title)+"</h2><span class='span'>"+count+(count>1?" records":" record")+"</span></div>"
+    + (group.note ? "<p class='cat-note'>"+esc(group.note)+"</p>" : "")
+    + "<div class='grid'>"+tiles+"</div>";
+  cat.appendChild(sec);
+});
+
+// jump menu smooth scroll
+nav.addEventListener("click", function(e){
+  const a = e.target.closest("a[href^='#']"); if(!a) return;
+  e.preventDefault();
+  const el = document.getElementById(a.getAttribute("href").slice(1)); if(!el) return;
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  el.scrollIntoView({behavior: reduce ? "auto" : "smooth", block: "start"});
+  history.replaceState(null, "", a.getAttribute("href"));
+});
+
+// stats
+const all = DATA.reduce((a,g)=>a.concat(g.records),[]);
+const yrs = all.map(r=>parseInt(r.year,10)).filter(n=>!isNaN(n));
+const setText=(id,v)=>{const e=document.getElementById(id); if(e) e.textContent=v;};
+setText("stat-count", all.length);
+setText("stat-years", yrs.length ? Math.min.apply(null,yrs)+"\u2013"+Math.max.apply(null,yrs) : "--");
+setText("stat-labels", new Set(all.map(r=>(r.label||"").trim()).filter(Boolean)).size);
+setText("mh-count", all.length);
+setText("lot-count-2", all.length);
+setText("cat-count", DATA.length);
+
+// detail modal
+const modal=document.getElementById("modal"), modalBody=document.getElementById("modal-body"), modalX=document.getElementById("modalX");
+let lastFocus=null;
+function openModal(i){
+  const e=FLAT[i]; if(!e) return;
+  lastFocus=document.activeElement;
+  modalBody.innerHTML=detailHTML(e.r, e.no);
+  modal.classList.add("on"); document.body.classList.add("noscroll");
+  modal.scrollTop=0; modalX.focus();
+}
+function closeModal(){ modal.classList.remove("on"); document.body.classList.remove("noscroll"); modalBody.innerHTML=""; if(lastFocus&&lastFocus.focus) lastFocus.focus(); }
+cat.addEventListener("click", function(e){ const t=e.target.closest(".tile"); if(t) openModal(+t.dataset.i); });
+modalX.addEventListener("click", closeModal);
+modal.addEventListener("click", function(e){ if(e.target===modal || e.target.classList.contains("modal-wrap")) closeModal(); });
+
+// lightbox - full-res, opened from the detail modal
+const lb=document.getElementById("lb"), lbImg=document.getElementById("lbImg"), lbCap=document.getElementById("lbCap");
+let shots=[], at=0;
+function show(){ lbImg.onerror=function(){this.onerror=null;this.classList.add("isph");this.src=PH(shots[at].cap.split(" - ").pop());};
+  lbImg.src=shots[at].hi; lbImg.alt=shots[at].cap; lbCap.textContent=shots[at].cap; }
+function openLb(list,i){ shots=list; at=i; show(); lb.classList.add("on"); document.getElementById("lbX").focus(); }
+function closeLb(){ lb.classList.remove("on"); lbImg.src=""; }
+document.getElementById("lbX").onclick=closeLb;
+document.getElementById("lbPrev").onclick=()=>{at=(at-1+shots.length)%shots.length;show();};
+document.getElementById("lbNext").onclick=()=>{at=(at+1)%shots.length;show();};
+lb.addEventListener("click",e=>{if(e.target===lb)closeLb();});
+modal.addEventListener("click",function(e){
+  const img=e.target.closest("img[data-hi]"); if(!img) return;
+  const grp=img.closest(".plates"); if(!grp) return;
+  const list=[].slice.call(grp.querySelectorAll("img[data-hi]")).map(x=>({hi:x.dataset.hi,cap:x.dataset.cap}));
+  openLb(list, list.findIndex(o=>o.hi===img.dataset.hi));
+});
+document.addEventListener("keydown",e=>{
+  if(lb.classList.contains("on")){
+    if(e.key==="Escape")closeLb();
+    if(e.key==="ArrowLeft")document.getElementById("lbPrev").click();
+    if(e.key==="ArrowRight")document.getElementById("lbNext").click();
+    return;
+  }
+  if(modal.classList.contains("on") && e.key==="Escape") closeModal();
+});
+</script>
+</body>
+</html>
