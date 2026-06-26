@@ -170,7 +170,7 @@
       <li>Original pressings, plus a couple of sealed reissues</li>
       <li>Honestly graded and fairly priced</li>
     </ul>
-    <p class="offer-foot">The figure beside each title is shown for reference only; for the lot price, DM <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram @yourhandle</a> or <a href="https://reddit.com/user/u/PlaylistCafe_in" target="_blank" rel="noopener">Reddit u/PlaylistCafe_in</a>. Ships in rigid LP mailers; international post on request.</p>
+    <p class="offer-foot">The whole collection is offered as one lot, to a single home where these records will be played and loved. To talk it over, DM for more details &mdash; <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram @yourhandle</a> or <a href="https://www.reddit.com/user/hindiVinylLover/" target="_blank" rel="noopener">Reddit u/hindiVinylLover</a>. Ships in rigid LP mailers; international post on request.</p>
   </section>
 
   <nav class="catnav" id="catnav"></nav>
@@ -197,7 +197,7 @@
     <div class="ways">
       <a href="mailto:you@example.com?subject=Vinyl%20lot%20enquiry">you@example.com</a>
       <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener">Instagram &middot; @yourhandle</a>
-      <a href="https://reddit.com/user/PlaylistCafe_in" target="_blank" rel="noopener">Reddit &middot; u/PlaylistCafe_in</a>
+      <a href="https://www.reddit.com/user/hindiVinylLover/" target="_blank" rel="noopener">Reddit &middot; u/hindiVinylLover</a>
     </div>
     <div class="fine">The Record Room &middot; Bengaluru, India &middot; Prices in INR, shipping extra</div>
   </div>
@@ -530,7 +530,7 @@ function plateImg(im, title, lead){
 
 function tileHTML(r, no, i){
   const lead = buildImages(r.slug, r.gatefold)[0];
-  const sub = [r.year, r.label].filter(Boolean).map(esc).join(" \u00B7 ");
+  const sub = [r.year].filter(Boolean).map(esc).join(" \u00B7 ");
   const grade = (esc(r.coverGrade)||"-") + " / " + (esc(r.recordGrade)||"-");
   return "<button class='tile' data-i='"+i+"' aria-label='"+esc(r.title)+" - view details'>"
     + "<span class='tile-cover'>"
@@ -540,7 +540,7 @@ function tileHTML(r, no, i){
     + "<span class='tile-body'>"
     +   "<span class='tile-meta'><span class='tile-no'>"+no+"</span><span class='tile-sub'>"+sub+"</span></span>"
     +   "<span class='tile-title'>"+esc(r.title)+"</span>"
-    +   "<span class='tile-foot'><span class='tile-grade' title='Sleeve / Disc grade'>"+grade+"</span><span class='tile-price'>"+(r.sold?"Sold":(r.price!=null?fmt(r.price):"--"))+"</span></span>"
+    +   "<span class='tile-foot'><span class='tile-grade' title='Sleeve / Disc grade'>"+grade+"</span><span class='tile-price'>"+(r.sold?"Sold":(esc(r.label)||""))+"</span></span>"
     + "</span></button>";
 }
 
@@ -567,7 +567,7 @@ function detailHTML(r, no){
     +   "</dl>"
     +   (r.notes ? "<p class='condnote'>"+esc(r.notes)+"</p>" : "")
     +   tracks
-    +   "<div class='lot-buy'><div class='price'>"+(r.sold?"Sold":(r.price!=null?fmt(r.price):"--"))+"<small>"+(r.sold?"no longer available":"reference price")+"</small></div></div>"
+    +   (r.sold ? "<div class='lot-buy'><div class='price'>Sold<small>no longer available</small></div></div>" : "")
     + "</div></div>";
 }
 
