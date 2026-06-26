@@ -514,7 +514,7 @@ function PH(cap){
 const onerr = "this.onerror=null;this.classList.add('isph');this.src=PH(this.dataset.ph)";
 
 function buildImages(slug, gatefold){
-  const D="img/display/", F="img/full/";
+  const D="/img/display/", F="/img/full/";
   const mk=(role,cap,wide)=>({src:D+slug+"-"+role+".jpg", hi:F+slug+"-"+role+".jpg", cap, wide:!!wide});
   const a=[mk("front","Front cover")];
   if(gatefold) a.push(mk("inside","Gatefold - inside",true));
